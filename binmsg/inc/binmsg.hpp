@@ -44,7 +44,7 @@ union Char64 {
     }
 
     operator uint64_t() { return as_u64; }
-    operator std::string_view() { return std::string_view(as_chars, size()); }
+    operator std::string_view() const { return std::string_view(as_chars, size()); }
 };
 
 inline bool operator==(Char64 c, std::string_view s) {

@@ -35,6 +35,9 @@ public:
 
     /** Client's ID */
     virtual size_t id() const = 0;
+    
+    virtual ~BmClient() {};
+
 
     //virtual void kick() = 0;
     //virtual std::string_view username() = 0;
@@ -77,6 +80,8 @@ public:
 
     /** Do something for every client connected. */
     virtual void forAllClients(const std::function<void(BmClient* client)> cb) = 0;
+
+    virtual ~BmServer() {};
 };
 
 /**
