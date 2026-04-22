@@ -6,7 +6,8 @@
 namespace modlib {
 
 class GLogicModule : public BmServerModule {
-    
+public:
+    virtual void onTick() = 0;
 };
 
 } // namespace modlib

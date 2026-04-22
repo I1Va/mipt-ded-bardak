@@ -11,6 +11,8 @@
 #include <cstdint>
 #include <string_view>
 #include <cstring>
+#include <vector>
+
 
 namespace bmsg {
 
@@ -122,4 +124,21 @@ public:
         return data().size() == sizeof(Header) + head->len;
     }
 };
+
+inline std::vector<char> generateEmptyMessage(std::string_view prefix, 
+                                              std::string_view type, 
+                                              bmsg::Id id, 
+                                              uint16_t flags = 0) {
+    bmsg::Header head;
+    head.pref = prefix; 
+    head.type = type;
+    head.id = id;
+    head.len = 0;       
+    head.flags = flags;
+
+    std::vector<char> buffer(sizeof(bmsg::Header));
+    std::memcpy(buffer.data(), &head, sizeof(bmsg::Header));
+    return buffer;
+}
+
 };
